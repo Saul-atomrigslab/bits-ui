@@ -9,9 +9,12 @@
 		{ value: "svelte-orange", label: "Svelte Orange" },
 		{ value: "punk-pink", label: "Punk Pink" }
 	];
+
+	let value = "light-monochrome";
+	let label = "Light Monochrome";
 </script>
 
-<Select.Root>
+<Select.Root bind:value bind:label>
 	<Select.Trigger
 		class="inline-flex h-input w-[296px] items-center rounded-9px border border-border-input bg-background px-[11px] text-sm transition-colors placeholder:text-foreground-alt/50  focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus:ring-offset-background "
 		aria-label="Select a theme"

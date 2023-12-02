@@ -1,4 +1,4 @@
-import { type CreateSelectProps, type Select as SelectReturn, createSelect } from "@melt-ui/svelte";
+import { type CreateSelectProps, createSelect } from "@melt-ui/svelte";
 import { getContext, setContext } from "svelte";
 import {
 	createBitAttrs,
@@ -28,18 +28,25 @@ const PARTS = [
 
 export const getAttrs = createBitAttrs(NAME, PARTS);
 
-type GetReturn = SelectReturn;
+type GetReturn = ReturnType<typeof setCtx>;
 
 export function getCtx() {
 	return getContext<GetReturn>(NAME);
 }
 
-export function setCtx(props: CreateSelectProps) {
-	const select = createSelect(removeUndefined(props));
+type SelectedLabel = {
+	selectedLabel: Writable<string>;
+};
+
+export function setCtx(props: CreateSelectProps & SelectedLabel) {
+	const { selectedLabel, ...rest } = props;
+	const select = createSelect(removeUndefined(rest));
 	setContext(NAME, select);
+
 	return {
 		...select,
-		updateOption: getOptionUpdater(select.options)
+		updateOption: getOptionUpdater(select.options),
+		selectedLabel
 	};
 }
 

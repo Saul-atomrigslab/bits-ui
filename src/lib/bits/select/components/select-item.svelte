@@ -3,6 +3,8 @@
 	import { setItemCtx, getAttrs } from "../ctx.js";
 	import type { ItemEvents, ItemProps } from "../types.js";
 	import { createDispatcher } from "$lib/internal/events.js";
+	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
 
 	type $$Props = ItemProps;
 	type $$Events = ItemEvents;
@@ -13,11 +15,26 @@
 	export let asChild: $$Props["asChild"] = false;
 
 	const {
-		elements: { option: item }
+		elements: { option: item },
+		states: { selected }
 	} = setItemCtx(value);
+
+	const selectedLabel = getContext<Writable<string>>("selectedLabel");
+
+	function action(node: HTMLElement) {
+		if (!label && node.textContent) {
+			label = node.textContent;
+		}
+	}
 
 	const dispatch = createDispatcher();
 	const attrs = getAttrs("item");
+
+	$: if ($selected && $selected.value === value && selectedLabel) {
+		setTimeout(() => {
+			selectedLabel.set(label ?? "");
+		}, 5);
+	}
 
 	$: builder = $item({ value, disabled, label });
 	$: slotProps = { builder, attrs };
@@ -29,6 +46,7 @@
 	<slot {...slotProps} />
 {:else}
 	<div
+		use:action
 		use:melt={builder}
 		{...$$restProps}
 		{...attrs}

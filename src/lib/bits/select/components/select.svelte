@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { derived } from "svelte/store";
+	import { derived, writable } from "svelte/store";
 	import { setCtx } from "../ctx.js";
 	import type { SelectProps } from "../types.js";
+	import { setContext } from "svelte";
 
 	type $$Props = SelectProps;
 
@@ -18,6 +19,14 @@
 	export let onSelectedChange: $$Props["onSelectedChange"] = undefined;
 	export let open: $$Props["open"] = undefined;
 	export let onOpenChange: $$Props["onOpenChange"] = undefined;
+	export let value: $$Props["value"] = undefined;
+	export let label: $$Props["label"] = undefined;
+	export let onValueChange: $$Props["onValueChange"] = undefined;
+
+	const selectedLabel = writable(
+		label ? label : value && typeof value === "string" ? value : ""
+	);
+	setContext("selectedLabel", selectedLabel);
 
 	const {
 		states: { open: localOpen, selected: localSelected },
@@ -41,6 +50,14 @@
 				onSelectedChange?.(next);
 				selected = next;
 			}
+			if (next && next.value !== value) {
+				onValueChange?.(next.value);
+				value = next.value;
+			} else if (!next) {
+				onValueChange?.(undefined);
+				value = undefined;
+			}
+
 			return next;
 		},
 		onOpenChange: ({ next }) => {
@@ -49,7 +66,8 @@
 				open = next;
 			}
 			return next;
-		}
+		},
+		selectedLabel
 	});
 
 	const idValues = derived(
@@ -62,7 +80,8 @@
 	);
 
 	$: open !== undefined && localOpen.set(open);
-	$: selected !== undefined && localSelected.set(selected);
+
+	$: value !== undefined && localSelected.set({ value, label });
 
 	$: updateOption("required", required);
 	$: updateOption("disabled", disabled);

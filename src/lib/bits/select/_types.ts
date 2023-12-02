@@ -13,9 +13,35 @@ type Props<T = unknown> = Expand<
 		 * The selected value of the select.
 		 * You can bind this to a value to programmatically control the selected value.
 		 *
-		 * @defaultValue undefined
+		 * @default undefined
 		 */
 		selected?: CreateSelectProps["defaultSelected"] & {};
+
+		/**
+		 * The selected value of the select.
+		 * You can bind this to a value to programmatically control the selected value.
+		 *
+		 * @default undefined
+		 */
+		value?: T;
+
+		/**
+		 * The selected value of the select.
+		 * You can bind this to a value to programmatically control the selected value.
+		 *
+		 * @default undefined
+		 */
+		onValueChange?: OnChangeFn<T>;
+
+		/**
+		 * The label to display with the value prop (if any).
+		 * If you don't provide a label, the value will be displayed as the label.
+		 * If you programmatically control the `value`, you must also update the `label` to match
+		 * or the label will be out of sync with the value.
+		 *
+		 * @default undefined
+		 */
+		label?: string;
 
 		/**
 		 * A callback function called when the selected value changes.
@@ -26,7 +52,7 @@ type Props<T = unknown> = Expand<
 		 * The open state of the select menu.
 		 * You can bind this to a boolean value to programmatically control the open state.
 		 *
-		 * @defaultValue false
+		 * @default false
 		 */
 		open?: boolean;
 
@@ -52,7 +78,7 @@ type ValueProps = Expand<
 		/**
 		 * The placeholder text to display when there is no value.
 		 *
-		 * @defaultValue ""
+		 * @default ""
 		 */
 		placeholder?: string;
 	} & AsChild
