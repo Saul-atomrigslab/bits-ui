@@ -16,6 +16,7 @@
 	export let closeFocus: $$Props["closeFocus"] = undefined;
 	export let disableFocusFirstItem: $$Props["disableFocusFirstItem"] =
 		undefined;
+	export let closeOnItemClick: $$Props["closeOnItemClick"] = undefined;
 
 	const {
 		states: { open: localOpen },
@@ -23,6 +24,7 @@
 		ids
 	} = setCtx({
 		closeOnOutsideClick,
+		closeOnItemClick,
 		closeOnEscape,
 		portal,
 		forceVisible: true,
@@ -61,6 +63,7 @@
 	$: updateOption("closeFocus", closeFocus);
 	$: updateOption("disableFocusFirstItem", disableFocusFirstItem);
 	$: updateOption("typeahead", typeahead);
+	$: updateOption("closeOnItemClick", closeOnItemClick);
 </script>
 
 <slot ids={$idValues} />

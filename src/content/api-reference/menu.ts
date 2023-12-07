@@ -30,6 +30,11 @@ const props = {
 		default: C.TRUE,
 		description: "Whether to close the menu when a click occurs outside of it."
 	},
+	closeOnItemClick: {
+		type: C.BOOLEAN,
+		default: C.TRUE,
+		description: "Whether to close the menu when a menu item is clicked."
+	},
 	loop: {
 		type: C.BOOLEAN,
 		default: C.FALSE,
