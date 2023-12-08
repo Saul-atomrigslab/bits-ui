@@ -39,6 +39,7 @@
 	$: if (id) {
 		ids.content.set(id);
 	}
+
 	$: builder = $content;
 	$: Object.assign(builder, attrs);
 
@@ -59,35 +60,39 @@
 	<slot {builder} />
 {:else if transition && $open}
 	<div
+		use:melt={$content}
 		transition:transition={transitionConfig}
-		use:melt={builder}
 		{...$$restProps}
 	>
 		<slot {builder} />
 	</div>
 {:else if inTransition && outTransition && $open}
 	<div
+		use:melt={$content}
 		in:inTransition={inTransitionConfig}
 		out:outTransition={outTransitionConfig}
-		use:melt={builder}
 		{...$$restProps}
 	>
 		<slot {builder} />
 	</div>
 {:else if inTransition && $open}
-	<div in:inTransition={inTransitionConfig} use:melt={builder} {...$$restProps}>
+	<div
+		use:melt={$content}
+		in:inTransition={inTransitionConfig}
+		{...$$restProps}
+	>
 		<slot {builder} />
 	</div>
 {:else if outTransition && $open}
 	<div
+		use:melt={$content}
 		out:outTransition={outTransitionConfig}
-		use:melt={builder}
 		{...$$restProps}
 	>
 		<slot {builder} />
 	</div>
 {:else if $open}
-	<div use:melt={builder} {...$$restProps}>
+	<div use:melt={$content} {...$$restProps}>
 		<slot {builder} />
 	</div>
 {/if}

@@ -48,7 +48,10 @@ export function setCtx<T = unknown, M extends boolean = false>(
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	props: Props<T, M>
 ) {
-	const select = createSelect<T, M>(removeUndefined(props));
+	const select = createSelect<T, M>({
+		...removeUndefined(props),
+		forceVisible: true
+	});
 	setContext(NAME, select);
 	return {
 		...select,

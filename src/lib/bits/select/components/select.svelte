@@ -10,12 +10,12 @@
 
 	type $$Props = Props<T, Multiple>;
 
-	export let required: $$Props["required"] = undefined;
-	export let disabled: $$Props["disabled"] = undefined;
-	export let preventScroll: $$Props["preventScroll"] = undefined;
-	export let loop: $$Props["loop"] = undefined;
-	export let closeOnEscape: $$Props["closeOnEscape"] = undefined;
-	export let closeOnOutsideClick: $$Props["closeOnOutsideClick"] = undefined;
+	export let required: $$Props["required"] = false;
+	export let disabled: $$Props["disabled"] = false;
+	export let preventScroll: $$Props["preventScroll"] = true;
+	export let loop: $$Props["loop"] = false;
+	export let closeOnEscape: $$Props["closeOnEscape"] = true;
+	export let closeOnOutsideClick: $$Props["closeOnOutsideClick"] = true;
 	export let portal: $$Props["portal"] = undefined;
 	export let name: $$Props["name"] = undefined;
 	export let multiple: $$Props["multiple"] = false as Multiple;

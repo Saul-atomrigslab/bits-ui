@@ -27,6 +27,7 @@
 		defaultOpen: open,
 		openFocus,
 		closeFocus,
+		forceVisible: true,
 		onOpenChange: ({ next }) => {
 			if (open !== next) {
 				onOpenChange?.(next);

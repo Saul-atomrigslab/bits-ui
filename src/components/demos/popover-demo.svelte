@@ -2,6 +2,7 @@
 	import { Popover, Separator, Toggle } from "$lib";
 	import { ImageSquare, LinkSimpleHorizontalBreak } from "phosphor-svelte";
 	import { flyAndScale } from "@/utils";
+	import Select from "./select-demo.svelte";
 
 	let width = 1024;
 	let height = 768;
@@ -20,6 +21,7 @@
 		sideOffset={8}
 	>
 		<div class="flex items-center">
+			<Select />
 			<div
 				class="mr-3 flex items-center justify-center rounded-full bg-muted sq-12"
 			>

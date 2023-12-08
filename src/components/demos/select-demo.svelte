@@ -21,7 +21,7 @@
 		<CaretUpDown class="ml-auto text-muted-foreground sq-6" />
 	</Select.Trigger>
 	<Select.Content
-		class="w-full rounded-xl border border-muted bg-background px-1 py-3 shadow-popover outline-none"
+		class="z-50 w-full rounded-xl border border-muted bg-background px-1 py-3 shadow-popover outline-none"
 		transition={flyAndScale}
 		sideOffset={8}
 	>
