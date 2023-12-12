@@ -79,7 +79,7 @@
 
 	<div class="flex items-center">
 		<Toolbar.Button
-			class="inline-flex items-center justify-center rounded-9px px-3 py-2 text-sm  font-medium text-foreground/80 transition-all hover:bg-muted active:scale-98 active:bg-dark-10"
+			class="inline-flex items-center justify-center rounded-9px px-3 py-2 text-sm  font-medium text-foreground/60 transition-all hover:bg-muted active:scale-98 active:bg-dark-10 active:text-foreground/80"
 		>
 			<Sparkle class="mr-2 sq-6" />
 			<span> Ask AI </span>

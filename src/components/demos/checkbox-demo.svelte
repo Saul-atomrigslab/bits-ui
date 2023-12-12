@@ -8,7 +8,7 @@
 	<Checkbox.Root
 		id="terms"
 		aria-labelledby="terms-label"
-		class="peer inline-flex items-center justify-center rounded-md border border-muted bg-foreground sq-[25px] active:scale-98 data-[state=unchecked]:border-border-input data-[state=unchecked]:bg-background"
+		class="peer inline-flex items-center justify-center rounded-md border border-muted bg-foreground sq-[25px] active:scale-98 data-[state=unchecked]:border-border-input data-[state=unchecked]:bg-background hover:data-[state=unchecked]:border-dark-40"
 		checked="indeterminate"
 	>
 		<Checkbox.Indicator
