@@ -20,4 +20,5 @@
 	>
 		<ScrollArea.Thumb class="relative flex-1 rounded-full bg-border" />
 	</ScrollArea.Scrollbar>
+	<ScrollArea.Corner />
 </ScrollArea.Root>

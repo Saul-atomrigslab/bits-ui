@@ -16,6 +16,8 @@
 	const scrollbarVisibleCtx = getScrollbarVisibleCtx();
 	const { sizes } = scrollbarVisibleCtx;
 
+	$: console.log($sizes);
+
 	$: el = $scrollbarYElement;
 </script>
 

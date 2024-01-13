@@ -14,7 +14,7 @@
 
 	type $$Props = Props;
 
-	let typeProp: ScrollType = "hover";
+	let typeProp: ScrollType = "always";
 	let scrollHideDelayProp = 600;
 	let dirProp: Direction = "ltr";
 	export let el: HTMLElement | null | undefined = undefined;

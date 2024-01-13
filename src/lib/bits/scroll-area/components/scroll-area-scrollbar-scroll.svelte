@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import { getScrollAreaCtx, getScrollbarCtx } from "../ctx.js";
 	import { createStateMachine, isBrowser } from "$lib/internal/index.js";
 	import { debounceCallback } from "../utils.js";

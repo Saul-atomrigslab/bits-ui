@@ -22,6 +22,7 @@
 	} from "../utils.js";
 	import ScrollAreaScrollbarX from "./scroll-area-scrollbar-x.svelte";
 	import ScrollAreaScrollbarY from "./scroll-area-scrollbar-y.svelte";
+	import { onMount } from "svelte";
 
 	type $$Props = ScrollbarVisibleProps;
 
@@ -48,6 +49,7 @@
 	const pointerOffset = writable(0);
 
 	function handleWheelScroll(e: WheelEvent, payload: number) {
+		console.log("handling wheel scroll");
 		if (!$viewportElement) return;
 		if ($isHorizontal) {
 			const scrollPos = $viewportElement.scrollLeft + e.deltaY;

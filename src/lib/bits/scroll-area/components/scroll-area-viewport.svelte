@@ -26,6 +26,7 @@
 			"min-width": "100%",
 			display: "table"
 		})}
+		{...$$restProps}
 	>
 		<slot />
 	</div>
