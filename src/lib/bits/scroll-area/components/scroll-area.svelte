@@ -3,13 +3,14 @@
 	import type { Direction, ScrollType } from "../ctx.js";
 	import { setScrollAreaCtx } from "../ctx.js";
 	import { styleToString } from "$lib/internal/style.js";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	type Props = {
 		type?: ScrollType;
 		dir?: Direction;
 		scrollHideDelay?: number;
 		el?: HTMLElement | null;
-	};
+	} & HTMLAttributes<HTMLElement>;
 
 	type $$Props = Props;
 
@@ -17,11 +18,7 @@
 	let scrollHideDelayProp = 600;
 	let dirProp: Direction = "ltr";
 	export let el: HTMLElement | null | undefined = undefined;
-	export {
-		typeProp as type,
-		dirProp as dir,
-		scrollHideDelayProp as scrollHideDelay
-	};
+	export { typeProp as type, dirProp as dir, scrollHideDelayProp as scrollHideDelay };
 
 	const cornerWidth = writable(0);
 	const cornerHeight = writable(0);
@@ -55,6 +52,7 @@
 <div
 	bind:this={el}
 	data-dir={$dir}
+	{...$$restProps}
 	style={styleToString({
 		position: "relative",
 		"--bits-scroll-area-corner-height": `${$cornerHeight}px`,

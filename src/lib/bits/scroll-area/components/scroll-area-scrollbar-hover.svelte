@@ -5,10 +5,14 @@
 	import { onMount } from "svelte";
 	import { addEventListener, executeCallbacks } from "$lib/internal/index.js";
 
-	type $$Props = ScrollbarVisibleProps;
+	type $$Props = ScrollbarVisibleProps & {
+		el?: HTMLElement | undefined;
+	};
 
 	const rootCtx = getScrollAreaCtx();
 	const { scrollHideDelay, scrollAreaElement } = rootCtx;
+
+	export let el: HTMLElement | undefined = undefined;
 
 	let timeout: ReturnType<typeof setTimeout> | undefined | number;
 	let visible = false;
@@ -40,7 +44,7 @@
 </script>
 
 {#if visible}
-	<ScrollAreaScrollbarAuto {...$$restProps} data-state={visible ? "visible" : "hidden"}>
+	<ScrollAreaScrollbarAuto {...$$restProps} data-state={visible ? "visible" : "hidden"} bind:el>
 		<slot />
 	</ScrollAreaScrollbarAuto>
 {/if}

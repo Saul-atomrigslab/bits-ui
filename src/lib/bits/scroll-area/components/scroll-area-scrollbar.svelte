@@ -5,15 +5,20 @@
 	import type { HTMLAttributes } from "svelte/elements";
 	import ScrollAreaScrollbarVisible from "./scroll-area-scrollbar-visible.svelte";
 	import ScrollAreaScrollbarAuto from "./scroll-area-scrollbar-auto.svelte";
+	import ScrollAreaScrollbarHover from "./scroll-area-scrollbar-hover.svelte";
+	import ScrollAreaScrollbarScroll from "./scroll-area-scrollbar-scroll.svelte";
 
 	type $$Props = {
 		orientation?: "vertical" | "horizontal";
+		el?: HTMLElement | undefined;
 	} & HTMLAttributes<HTMLElement>;
 
 	export let orientation: Orientation = "vertical";
 
 	const rootCtx = getScrollAreaCtx();
 	const { type, scrollbarXEnabled, scrollbarYEnabled } = rootCtx;
+
+	export let el: HTMLElement | undefined = undefined;
 
 	const isHorizontal = writable(orientation === "horizontal");
 	const orientationStore = writable(orientation);
@@ -40,15 +45,19 @@
 </script>
 
 {#if $type === "hover"}
-	<slot />
+	<ScrollAreaScrollbarHover {...$$restProps} bind:el>
+		<slot />
+	</ScrollAreaScrollbarHover>
 {:else if $type === "scroll"}
-	<slot />
+	<ScrollAreaScrollbarScroll {...$$restProps} bind:el>
+		<slot />
+	</ScrollAreaScrollbarScroll>
 {:else if $type === "auto"}
-	<ScrollAreaScrollbarAuto {...$$restProps}>
+	<ScrollAreaScrollbarAuto {...$$restProps} bind:el>
 		<slot />
 	</ScrollAreaScrollbarAuto>
 {:else if $type === "always"}
-	<ScrollAreaScrollbarVisible data-state="visible" {...$$restProps}>
+	<ScrollAreaScrollbarVisible data-state="visible" {...$$restProps} bind:el>
 		<slot />
 	</ScrollAreaScrollbarVisible>
 {/if}

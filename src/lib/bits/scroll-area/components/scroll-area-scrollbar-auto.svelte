@@ -14,7 +14,11 @@
 
 	let visible = false;
 
-	type $$Props = ScrollbarVisibleProps;
+	type $$Props = ScrollbarVisibleProps & {
+		el?: HTMLElement | undefined;
+	};
+
+	export let el: HTMLElement | undefined = undefined;
 
 	const handleResize = debounceCallback(() => {
 		if (!$viewportElement) return;
@@ -49,7 +53,7 @@
 </script>
 
 {#if visible}
-	<ScrollAreaScrollbarVisible data-state={visible ? "visible" : "hidden"} {...$$restProps}>
+	<ScrollAreaScrollbarVisible data-state={visible ? "visible" : "hidden"} {...$$restProps} bind:el>
 		<slot />
 	</ScrollAreaScrollbarVisible>
 {/if}

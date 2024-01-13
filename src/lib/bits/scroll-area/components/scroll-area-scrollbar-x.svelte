@@ -4,13 +4,19 @@
 	import { getThumbSize } from "../utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 
-	type $$Props = HTMLAttributes<HTMLElement>;
+	type $$Props = HTMLAttributes<HTMLElement> & {
+		el?: HTMLElement;
+	};
+
+	export let el: HTMLElement | undefined = undefined;
 
 	const rootCtx = getScrollAreaCtx();
 	const { scrollbarXElement } = rootCtx;
 	const { dir } = rootCtx;
 	const scrollbarVisibleCtx = getScrollbarVisibleCtx();
 	const { sizes } = scrollbarVisibleCtx;
+
+	$: el = $scrollbarXElement;
 </script>
 
 <ScrollAreaScrollbarImpl

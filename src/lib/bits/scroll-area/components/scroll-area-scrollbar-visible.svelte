@@ -1,6 +1,8 @@
 <script lang="ts" context="module">
 	import type { HTMLAttributes } from "svelte/elements";
-	export type ScrollbarVisibleProps = HTMLAttributes<HTMLElement>;
+	export type ScrollbarVisibleProps = HTMLAttributes<HTMLElement> & {
+		el?: HTMLElement;
+	};
 </script>
 
 <script lang="ts">
@@ -22,6 +24,8 @@
 	import ScrollAreaScrollbarY from "./scroll-area-scrollbar-y.svelte";
 
 	type $$Props = ScrollbarVisibleProps;
+
+	export let el: HTMLElement | undefined = undefined;
 
 	const rootCtx = getScrollAreaCtx();
 	const { viewportElement, dir } = rootCtx;
@@ -122,11 +126,11 @@
 </script>
 
 {#if $isHorizontal}
-	<ScrollAreaScrollbarX {...$$restProps}>
+	<ScrollAreaScrollbarX {...$$restProps} bind:el>
 		<slot />
 	</ScrollAreaScrollbarX>
 {:else}
-	<ScrollAreaScrollbarY {...$$restProps}>
+	<ScrollAreaScrollbarY {...$$restProps} bind:el>
 		<slot />
 	</ScrollAreaScrollbarY>
 {/if}
