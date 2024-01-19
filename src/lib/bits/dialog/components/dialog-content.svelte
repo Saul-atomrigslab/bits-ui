@@ -4,9 +4,9 @@
 	import { getCtx } from "../ctx.js";
 	import type { ContentEvents, ContentProps } from "../types.js";
 
-	type T = $$Generic<Transition>;
-	type In = $$Generic<Transition>;
-	type Out = $$Generic<Transition>;
+	type T = $$Generic<Transition | null | undefined>;
+	type In = $$Generic<Transition | null | undefined>;
+	type Out = $$Generic<Transition | null | undefined>;
 
 	type $$Props = ContentProps<T, In, Out>;
 	type $$Events = ContentEvents;
